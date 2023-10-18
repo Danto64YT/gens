@@ -1,0 +1,283 @@
+command /getgen <text> [<player>]:
+    permission: gen.give
+    permission message: &a&lCREEPERGENS >> &cNo permission!
+    usage: &a&lCREEPERGENS >> &7/getgen [type] [player]
+    trigger:
+        if arg-2 is set:
+            set {_p} to arg-2
+        else:
+            set {_p} to player
+        if arg-1 is "bedrock":
+            give {_p} 1 bedrock named "&7&lBedrock Gen" with lore "&7(Place To Use)"
+        if arg-1 is "emerald":
+            give {_p} 1 emerald block named "&6&lEmerald Gen" with lore "&7(Place To Use)"
+        if arg-1 is "diamond":
+            give {_p} 1 diamond block named "&b&lDiamond Gen" with lore "&7(Place To Use)"
+        if arg-1 is "gold":
+            give {_p} 1 gold block named "&e&lGold Gen" with lore "&7(Place To Use)"
+        if arg-1 is "iron":
+            give {_p} 1 iron block named "&f&lIron Gen" with lore "&7(Place To Use)"
+        if arg-1 is "coal":
+            give {_p} 1 coal block named "&8&lCoal Gen" with lore "&7(Place To Use)"
+        if arg-1 is "melon":
+            give {_p} 1 melon named "&a&lMelon Gen" with lore "&7(Place To Use)"
+        if arg-1 is "pumpkin":
+            give {_p} 1 pumpkin named "&6&lPumpkin Gen" with lore "&7(Place To Use)"
+        if arg-1 is "wheat":
+            give {_p} 1 hay block named "&e&lWheat Gen" with lore "&7(Place To Use)"
+
+on block place of hay bale:
+  if name of player's tool is "&e&lWheat Gen":
+    add location of event-block to {generatorswheats::*}
+    send actionbar "&a&lCREEPERGENS >> &e&lSuccessfully Placed your &e&lWheat Generator" to player
+    
+on block place of pumpkin:
+  if name of player's tool is "&6&lPumpkin Gen":
+    add location of event-block to {pumpkinsgen::*}
+    send actionbar "&a&lCREEPERGENS >> &e&lSuccessfully Placed your &6&lPumpkin Generator" to player
+    
+on block place of melon:
+  if name of player's tool is "&a&lMelon Gen":
+    add location of event-block to {melonsgens::*}
+    send actionbar "&a&lCREEPERGENS >> &e&lSuccessfully Placed your &a&lMelon Generator" to player
+    
+on block place of coal block:
+  if name of player's tool is "&8&lCoal Gen":
+    add location of event-block to {coalsgens::*}
+    send actionbar "&a&lCREEPERGENS >> &e&lSuccessfully Placed your &8&lCoal Generator" to player
+
+on block place of iron block:
+  if name of player's tool is "&f&lIron Gen":
+    add location of event-block to {irongens::*}
+    send actionbar "&a&lCREEPERGENS >> &e&lSuccessfully Placed your &f&lIron Generator" to player
+
+on block place of gold block:
+  if name of player's tool is "&e&lGold Gen":
+    add location of event-block to {goldgens::*}
+    send actionbar "&a&lCREEPERGENS >> &e&lSuccessfully Placed your &e&lGold Generator" to player
+
+on block place of diamond block:
+  if name of player's tool is "&b&lDiamond Gen":
+    add location of event-block to {diamondgens::*}
+    send actionbar "&a&lCREEPERGENS >> &e&lSuccessfully Placed your &b&lDiamond Generator" to player
+
+on left click:
+	if player is sneaking:
+		if {generatorswheats::*} contains location of event-block: 
+			wait 5 ticks
+			remove location of event-block from {generatorswheats::*}
+			set event-block to air
+			give player hay bale named "&e&lWheat Gen" with lore "&7(Place To Use)"
+			send actionbar "&a&lCREEPERGENS >> &c&lSuccessfully Broke your &e&lWheat Generator" to player
+            
+
+on left click:
+	if player is sneaking:
+		if {pumpkinsgen::*} contains location of event-block: 
+			wait 5 ticks
+			remove location of event-block from {pumpkinsgen::*}
+			set event-block to air
+			give player pumpkin named "&6&lPumpkin Gen" with lore "&7(Place To Use)"
+			send actionbar "&a&lCREEPERGENS >> &c&lSuccessfully Broke your &6&lPumpkin Generator" to player
+            
+on left click:
+    if player is sneaking:
+        if {melonsgens::*} contains location of event-block: 
+            set event-block to air
+            wait 5 ticks
+            remove location of event-block from {melonsgens::*}
+            give player melon named "&a&lMelon Gen" with lore "&7(Place To Use)"
+            send actionbar "&a&lCREEPERGENS >> &c&lSuccessfully Broke your &a&lMelon Gen" to player
+            
+on left click:
+	if player is sneaking:
+		if {coalsgens::*} contains location of event-block: 
+			set event-block to air
+			wait 5 ticks
+			remove location of event-block from {coalsgens::*}
+			give player coal block named "&8&lCoal Gen" with lore "&7(Place To Use)"
+			send actionbar "&a&lCREEPERGENS >> &c&lSuccessfully Broke your &8&lCoal Generator" to player
+
+on left click:
+	if player is sneaking:
+		if {irongens::*} contains location of event-block: 
+			set event-block to air
+			wait 5 ticks
+			remove location of event-block from {irongens::*}
+			give player iron block named "&f&lIron Gen" with lore "&7(Place To Use)"
+			send actionbar "&a&lCREEPERGENS >> &c&lSuccessfully Broke your &f&lIron Generator" to player
+
+on left click:
+	if player is sneaking:
+		if {goldgens::*} contains location of event-block: 
+			set event-block to air
+			wait 5 ticks
+			remove location of event-block from {goldgens::*}
+			give player gold block named "&e&lGold Gen" with lore "&7(Place To Use)"
+			send actionbar "&a&lCREEPERGENS >> &c&lSuccessfully Broke your &e&lGold Generator" to player
+
+on left click:
+	if player is sneaking:
+		if {diamondgens::*} contains location of event-block: 
+			set event-block to air
+			wait 5 ticks
+			remove location of event-block from {diamondgens::*}
+			give player diamond block named "&b&lDiamond Gen" with lore "&7(Place To Use)"
+			send actionbar "&a&lCREEPERGENS >> &c&lSuccessfully Broke your &b&lDiamond Generator" to player
+
+on left click:
+	if player is not sneaking:
+		if {generatorswheats::*} contains location of event-block: 
+			cancel event
+			send actionbar "&a&lCREEPERGENS >> &c&lTO BREAK A GENERATOR MAKE SURE YOU'RE SNEAKING!!!" to player
+            
+on left click:
+	if player is not sneaking:
+		if {pumpkinsgen::*} contains location of event-block: 
+			cancel event
+			send actionbar "&a&lCREEPERGENS >> &c&lTO BREAK A GENERATOR MAKE SURE YOU'RE SNEAKING!!!" to player
+            
+on left click:
+	if player is not sneaking:
+		if {melonsgens::*} contains location of event-block: 
+			cancel event
+			send actionbar "&a&lCREEPERGENS >> &c&lTO BREAK A GENERATOR MAKE SURE YOU'RE SNEAKING!!!" to player
+            
+on left click:
+	if player is not sneaking:
+		if {coalsgens::*} contains location of event-block: 
+			cancel event
+			send actionbar "&a&lCREEPERGENS >> &c&lTO BREAK A GENERATOR MAKE SURE YOU'RE SNEAKING!!!" to player
+
+on left click:
+	if player is not sneaking:
+		if {irongens::*} contains location of event-block: 
+			cancel event
+			send actionbar "&a&lCREEPERGENS >> &c&lTO BREAK A GENERATOR MAKE SURE YOU'RE SNEAKING!!!" to player
+
+on left click:
+	if player is not sneaking:
+		if {goldgens::*} contains location of event-block: 
+			cancel event
+			send actionbar "&a&lCREEPERGENS >> &c&lTO BREAK A GENERATOR MAKE SURE YOU'RE SNEAKING!!!" to player
+
+on left click:
+	if player is not sneaking:
+		if {diamondgens::*} contains location of event-block: 
+			cancel event
+			send actionbar "&a&lCREEPERGENS >> &c&lTO BREAK A GENERATOR MAKE SURE YOU'RE SNEAKING!!!" to player
+
+# Spawning Function
+
+every 2 seconds:
+	drop 1 wheat 0.5 meters above {generatorswheats::*}
+	drop 1 pumpkin pie 0.5 meters above {pumpkinsgen::*}
+	drop 1 melon slice 0.5 meters above {melonsgens::*}
+	drop 1 coal 0.5 meters above {coalsgens::*}
+	drop 1 iron ingot 0.5 meters above {irongens::*}
+	drop 1 gold ingot 0.5 meters above {goldgens::*}
+	drop 1 diamond 0.5 meters above {diamondgens::*}
+
+command /debug:
+	permission: creepergens.debug
+	trigger:
+		set {generatorswheats::*} to hay bale
+		set {pumpkinsgen::*} to pumpkin
+		set {melonsgens::*} to melon
+		set {coalsgens::*} to coal block
+		set {irongens::*} to iron block
+		set {goldgens::*} to gold block
+		set {diamondgens::*} to diamond block
+		send actionbar "&a&lCREEPERGENS >> &aSuccessfully Debugged all Generators!"
+		stop
+
+on right click:
+	if player is sneaking:
+		if {generatorswheats::*} contains location of event-block: 
+			if player's balance > 999:
+				wait 5 ticks
+				remove location of event-block from {generatorswheats::*}
+				set event-block to pumpkin
+				add location of event-block to {pumpkinsgen::*}
+				remove 1000 from the player's balance
+				play sound "block.note_block.pling" at volume 1 at pitch 2 to player
+				send actionbar "&a&lCREEPERGENS >> &a&lSuccessfully Upgraded from &e&lWheat to &6&lPumpkin" to player
+			else:
+				send actionbar "&a&lCREEPERGENS >> &c&lYou Need 1K To Upgrade From &e&lWheat to &6&lPumpkin!" to player
+				play sound "minecraft:entity.villager.no" at volume 1 at pitch 1 to player
+                
+
+on right click:
+	if player is sneaking:
+		if {pumpkinsgen::*} contains location of event-block: 
+			if player's balance > 9999:
+				wait 5 ticks
+				remove location of event-block from {pumpkinsgen::*}
+				set event-block to melon
+				add location of event-block to {melonsgens::*}
+				remove 10000 from the player's balance
+				play sound "block.note_block.pling" at volume 1 at pitch 2 to player
+				send actionbar "&a&lCREEPERGENS >> &a&lSuccessfully Upgraded from &6&lPumpkin to &a&lMelon" to player
+			else:
+				send actionbar "&a&lCREEPERGENS >> &c&lYou Need $10K to Upgrade From &6&lPumpkin to &a&lMelon" to player
+				play sound "minecraft:entity.villager.no" at volume 1 at pitch 1 to player
+                
+on right click:
+	if player is sneaking:
+		if {melonsgens::*} contains location of event-block: 
+			if player's balance > 99999:
+				wait 5 ticks
+				remove location of event-block from {melonsgens::*}
+				set event-block to coal block
+				add location of event-block to {coalsgens::*}
+				remove 100000 from the player's balance
+				play sound "block.note_block.pling" at volume 1 at pitch 2 to player
+				send actionbar "&a&lCREEPERGENS >> &a&lSuccessfully Upgraded from &a&lMelon to &8&lCoal" to player
+			else:
+				send actionbar "&a&lCREEPERGENS >> &c&lYou Need $100K to Upgrade From &a&lMelon to &8&lCoal" to player
+				play sound "minecraft:entity.villager.no" at volume 1 at pitch 1 to player
+
+on right click:
+	if player is sneaking:
+		if {coalsgens::*} contains location of event-block: 
+			if player's balance > 999999:
+				wait 5 ticks
+				remove location of event-block from {coalgens::*}
+				set event-block to iron block
+				add location of event-block to {irongens::*}
+				remove 1000000 from the player's balance
+				play sound "block.note_block.pling" at volume 1 at pitch 2 to player
+				send actionbar "&a&lCREEPERGENS >> &a&lSuccessfully Upgraded from &8&lCoal to &f&lIron" to player
+			else:
+				send actionbar "&a&lCREEPERGENS >> &c&lYou Need 1M to Upgrade From &8&lCoal to &f&lIron" to player
+				play sound "minecraft:entity.villager.no" at volume 1 at pitch 1 to player
+			
+on right click:
+	if player is sneaking:
+		if {irongens::*} contains location of event-block: 
+			if player's balance > 9999999:
+				wait 5 ticks
+				remove location of event-block from {irongens::*}
+				set event-block to gold block
+				add location of event-block to {goldgens::*}
+				remove 10000000 from the player's balance
+				play sound "block.note_block.pling" at volume 1 at pitch 2 to player
+				send actionbar "&a&lCREEPERGENS >> &a&lSuccessfully Upgraded from &f&lIron to &e&lGold" to player
+			else:
+				send actionbar "&a&lCREEPERGENS >> &c&lYou Need 10M to Upgrade From &f&lIron to &e&lGold" to player
+				play sound "minecraft:entity.villager.no" at volume 1 at pitch 1 to player
+
+on right click:
+	if player is sneaking:
+		if {goldgens::%player's uuid%::*} contains location of event-block: 
+			if player's balance > 99999999:
+				wait 5 ticks
+				remove location of event-block from {goldgens::*}
+				set event-block to diamond block
+				add location of event-block to {diamondgens::*}
+				remove 100000000 from the player's balance
+				play sound "block.note_block.pling" at volume 1 at pitch 2 to player
+				send actionbar "&a&lCREEPERGENS >> &a&lSuccessfully Upgraded from &e&lGold to &b&lDiamond" to player
+			else:
+				send actionbar "&a&lCREEPERGENS >> &c&lYou Need 100M to Upgrade From &e&lGold to &b&lDiamond" to player
+				play sound "minecraft:entity.villager.no" at volume 1 at pitch 1 to player
